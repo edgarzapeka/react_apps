@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import TodoList from './containers/TodoList';
-import Header from './containers/Header';
+import TodoList from './components/TodoList';
+import Header from './components/Header';
 
 class App extends Component {
 
   state = {
-    mode: 'default'
+    mode: 'viewing'
   }
 
   changeMode = (mode) => {

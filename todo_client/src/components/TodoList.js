@@ -28,14 +28,16 @@ class TodoList extends React.Component {
     addTodo = () => {
         const { todoText } = this.state
 
-        addTodo(todoText)
-            .then(response => response.json())
-            .then(data => {
-                this.setState((prevState, props) => ({
-                    todos: [...prevState.todos, data],
-                    todoText: '' 
-                }))
-            }) 
+        if (todoText !== '' && todoText){
+            addTodo(todoText)
+                .then(response => response.json())
+                .then(data => {
+                    this.setState((prevState, props) => ({
+                        todos: [...prevState.todos, data],
+                        todoText: '' 
+                    }))
+                }) 
+        } 
     }
 
     updateTodo = (id, text) => {
@@ -74,6 +76,12 @@ class TodoList extends React.Component {
         })
     }
 
+    handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            this.addTodo(); 
+        }
+    }
+
     render(){
         const { todos, todoText } = this.state;
         const { mode } = this.props;
@@ -81,7 +89,7 @@ class TodoList extends React.Component {
         return (
             <div className="row todo-list">
                 <div className="col-md-12 add-todo">
-                    <input type="text" className="form-control" placeholder="Todo" onChange={this.handleChange} value={todoText}/>
+                    <input type="text" className="form-control" placeholder="Todo" onChange={this.handleChange} value={todoText} onKeyPress={this.handleKeyPress}/>
                     <button className="btn btn-primary" onClick={this.addTodo}>Add</button>
                 </div>
                 <div className="col-md-12 todo-list-items">
