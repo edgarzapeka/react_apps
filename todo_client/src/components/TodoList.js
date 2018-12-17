@@ -1,103 +1,72 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Todo from '../components/Todo';
 import { fetchTodos, addTodo, deletePost, updatePost } from '../api';
+import ModeContext from '../ModeContext';
+import { Row, Col, Input, Button } from 'reactstrap';
 
-class TodoList extends React.Component {
+const TodoList = props => {
+    const [ mode ] = useContext(ModeContext);
+    const [ todos, setTodos ] = useState([]);
+    const [ addTodoInput, setTodoInput ] = useState('');
 
-    componentDidMount(){
+    useEffect(() => {
         fetchTodos()
             .then(response => response.json())
             .then(data => {
-                this.setState({
-                    todos: data
-                })
+                setTodos(data)
             })
-    }
+    }, [])
 
-    state = {
-        todos: [],
-        todoText: '',
-    }
-
-    makeTodoEditable = () => {
-        this.setState((prevState, props) => ({
-            isPostEditable: !prevState.isPostEditable
-        }))
-    }
-
-    addTodo = () => {
-        const { todoText } = this.state
-
-        if (todoText !== '' && todoText){
-            addTodo(todoText)
+    const addTodoHandler = () => {
+        if (addTodoInput !== '' && addTodoInput){
+            addTodo(addTodoInput)
                 .then(response => response.json())
                 .then(data => {
-                    this.setState((prevState, props) => ({
-                        todos: [...prevState.todos, data],
-                        todoText: '' 
-                    }))
+                    setTodos([...todos, data]);
                 }) 
         } 
     }
 
-    updateTodo = (id, text) => {
+    const updateTodoHandler = (id, text) => {
         updatePost(id, text)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
-                console.log(this)
-                if (!data.error){
-                    this.setState((prevState, props) => ({
-                        todos: [...prevState.todos]
-                    }))
+                if (data.error){
+                    console.log(data.error)
                 }
             })
     }
 
-    deleteTodo = (todoId) => {
+    const deleteTodoHandler = (todoId) => {
         deletePost(todoId)
             .then(response => response.json())
             .then(data => {
                 if (!data.error){
-                    this.setState((prevState, props) => ({
-                        todos: [...prevState.todos].filter(todo => todo._id !== todoId)
-                    }))
-                    console.log('Filtering...')
-                    console.log(this.state.todos)
+                    setTodos(todos.filter(todo => todo._id !== todoId))
                 } else{
                     console.log(data.error);
                 }
             })
     }
 
-    handleChange = (event) => {
-        this.setState({
-            todoText: event.target.value
-        })
-    }
-
-    handleKeyPress = (event) => {
+    const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            this.addTodo(); 
+            addTodo(); 
         }
     }
 
-    render(){
-        const { todos, todoText } = this.state;
-        const { mode } = this.props;
-
-        return (
-            <div className="row todo-list">
-                <div className="col-md-12 add-todo">
-                    <input type="text" className="form-control" placeholder="Todo" onChange={this.handleChange} value={todoText} onKeyPress={this.handleKeyPress}/>
-                    <button className="btn btn-primary" onClick={this.addTodo}>Add</button>
-                </div>
-                <div className="col-md-12 todo-list-items">
-                    { todos.map(t => <Todo todo={t} key={t._id} mode={mode} deletePost={this.deleteTodo} updateTodo={this.updateTodo}/>) }
-                </div>
-            </div>
-        );
-    };
+    return (
+        <Row className="todo-list">
+            <Col md="12" className="add-todo">
+                <Input type="text" placeholder="Todo" onChange={(e) => setTodoInput(e.target.value)} value={addTodoInput} onKeyPress={handleKeyPress}/>
+                <Button onClick={addTodoHandler} color="primary">Add</Button>
+            </Col>
+            <Col md="12" className="todo-list-items">
+                { todos.map(t => <Todo todo={t} key={t._id} mode={mode} deletePost={deleteTodoHandler} updateTodo={updateTodoHandler}/>) }
+            </Col>
+        </Row>
+    );
+    
 }
 
 export default TodoList;

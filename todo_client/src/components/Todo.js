@@ -1,60 +1,39 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import ModeContext from '../ModeContext';
+import { Row, Button, Input, Alert, Col } from 'reactstrap';
 
-class Todo extends React.Component {
+const Todo = props => {
+    const { todo, deletePost, updateTodo } = props;
+    const [ todoText, setTodoText ] = useState(todo.text);
+    const [ isPostEditable, setPostEditable ] = useState(false);
+    const [ mode ] = useContext(ModeContext);
 
-    state = {
-        todoText: this.props.todo.text,
-        isPostEditable: false
-    }
-
-    changeText = (event) => {
-        this.setState({
-            todoText: event.target.value
-        })
-    }
-
-    makeTodoEditable = () => {
-        this.setState((prevState, props) => ({
-            isPostEditable: !prevState.isPostEditable
-        }))
-    }
-
-    updateTodo = () => {
-        const { todo, updateTodo } = this.props;
-        const { todoText } = this.state;
-
+    const updateTodoHandler = () => {
         updateTodo(todo._id, todoText);
-        this.setState({
-            isPostEditable: false
-        })
+        setPostEditable(false);
     }
 
-    render(){
-        const { todo, mode, deletePost} = this.props;
-        const { todoText, isPostEditable } = this.state;
-
-        return (
-            <div className="row list-item">
-                { isPostEditable ? (
-                    <input type="text" className="form-control col item-info" value={ todoText } onChange={this.changeText}/>
-                ) : (
-                    <div className="alert alert-warning col item-info">
-                        { todoText }
-                    </div>
-                ) }
-                {mode === 'editing' && (
-                    <div className="col-md-2 action-bar">
-                        { !isPostEditable ? (
-                            <button type="button" className="btn btn-info" onClick={this.makeTodoEditable}>Edit</button>
-                        ) : (
-                            <button type="button" className="btn btn-info" onClick={this.updateTodo}>Save</button>
-                        ) }
-                        <button type="button" className="btn btn-danger" onClick={() => deletePost(todo._id)}>Delete</button>
-                    </div>
-                )}
-            </div>
-        );
-    }
+    return (
+        <Row className="list-item">
+            { isPostEditable ? (
+                <Input type="text" className="col item-info" value={ todoText } onChange={(e) => setTodoText(e.target.value)}/>
+            ) : (
+                <Alert className="col item-info" color="warning">
+                    { todoText }
+                </Alert>
+            ) }
+            {mode === 'editing' && (
+                <Col md="2" className="action-bar">
+                    { !isPostEditable ? (
+                        <Button color="info" onClick={() => setPostEditable(!isPostEditable)}>Edit</Button>
+                    ) : (
+                        <Button color="info" onClick={updateTodoHandler}>Save</Button>
+                    ) }
+                    <Button color="danger" onClick={() => deletePost(todo._id)}>Delete</Button>
+                </Col>
+            )}
+        </Row>
+    );
 };
 
 export default Todo;

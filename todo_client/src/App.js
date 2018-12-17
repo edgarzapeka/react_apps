@@ -1,30 +1,21 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
 import Header from './components/Header';
+import ModeContext from './ModeContext';
 
-class App extends Component {
+const App = props => {
+  const [ mode, setMode ] = useState('viewing');
 
-  state = {
-    mode: 'viewing'
-  }
-
-  changeMode = (mode) => {
-    this.setState({
-      mode: mode
-    });
-  };
-
-  render() {
-    const { mode } = this.state;
-
-    return (
-      <div className="App container">
-        <Header mode={mode} changeMode={this.changeMode}/>
+  return (
+    <div className="App container">
+      <ModeContext.Provider value={[mode, setMode]}>
+        <Header mode={mode} changeMode={setMode}/>
         <TodoList mode={mode}/>
-      </div>
-    );
-  }
+      </ModeContext.Provider>
+    </div>
+  );
+  
 }
 
 export default App;
