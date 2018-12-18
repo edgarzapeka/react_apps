@@ -13,6 +13,11 @@ const Header = props => {
                     TheBookStore
                 </Link>
                 <NavItem >
+                    <Link to="/" className="nav-link">
+                        Home
+                    </Link>
+                </NavItem>
+                <NavItem >
                     <Link to="/new" className="nav-link">
                         What's new
                     </Link>
