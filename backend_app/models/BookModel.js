@@ -5,7 +5,8 @@ const bookModel = new mongoose.Schema({
     title: String,
     description: String,
     author: String,
-    additionalInfo: Object
+    additionalInfo: Object,
+    price: Number
 },{
     timestamps: true
 });

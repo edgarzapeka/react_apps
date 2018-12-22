@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const TodoModel = require('../models/TodoModel');
+const BookModel = require('../models/BookModel');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 router.get('/', (req, res) => {
-    TodoModel.find({}, (err, data) => {
+    BookModel.find({}, (err, data) => {
         res.setHeader('Content-Type', 'application/json');
 
         if (err) {
@@ -14,10 +14,10 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/:todoId', (req, res) => {
+router.get('/:bookId', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    TodoModel.findById({ _id: ObjectId(req.params.todoId) }, (err, data) => {
+    BookModel.findById({ _id: ObjectId(req.params.bookId) }, (err, data) => {
         res.setHeader('Content-Type', 'application/json');        
         if (err) res.send({ error: "The object is not found" });
         else res.send(JSON.stringify(data));
@@ -25,7 +25,7 @@ router.get('/:todoId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    let model = new TodoModel({
+    let model = new BookModel({
         text: req.body.text
     });
 
@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
 
 router.put('/', (req, res) => {
     console.log(`Received: id: ${req.body.id} | text: ${req.body.text}`);
-    TodoModel.updateOne({ _id: ObjectId(req.body.id) }, {
+    BookModel.updateOne({ _id: ObjectId(req.body.id) }, {
         text: req.body.text
     }, (err, updatedObj) => {
         res.setHeader('Content-Type', 'application/json');
@@ -58,7 +58,7 @@ router.put('/', (req, res) => {
 });
 
 router.delete('/', (req, res) => {
-    TodoModel.deleteOne({ _id: ObjectId(req.body.id) }, err => {
+    BookModel.deleteOne({ _id: ObjectId(req.body.id) }, err => {
         res.setHeader('Content-Type', 'application/json');
         if (err) res.send({ error: "The object wasn't deleted" });
         else res.send({ message: 'The object was deleted' });
