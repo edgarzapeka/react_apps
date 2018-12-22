@@ -1,9 +1,11 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+
 import Header from './Header';
 import BookList from './BookList';
 import Footer from './Footer';
+
 import { Container, Row, Col } from 'reactstrap';
-import { Route } from 'react-router-dom';
 
 const App = props => {
 

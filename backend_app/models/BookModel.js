@@ -6,9 +6,9 @@ const bookModel = new mongoose.Schema({
     description: String,
     author: String,
     additionalInfo: Object,
-    price: Number
-},{
-    timestamps: true
+    price: Number,
+    createdAt: {type: Date, default: Date.now},
+    updatedAt: {type: Date, default: null}
 });
 
 module.exports = mongoose.model('Book', bookModel);
