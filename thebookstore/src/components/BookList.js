@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchBooks } from './../api';
+
 import Book from './Book';
+
 import { Row } from 'reactstrap';
 
 const BookList = props => {
-    const [ books, setBooks ] = useState([1,2,3,4,5,6,7]);
+    const [ books, setBooks ] = useState([]);
+
+    useEffect(() => {
+        if (books.length === 0){
+            fetchBooks()
+                .then(response => response.json())
+                .then(data => setBooks(data))
+        }
+    })
 
     return (
         <Row>
-            {books.map(b => <Book key={b}/>)}
+            {books.map(b => <Book key={b._id} book={b}/>)}
         </Row>
     );
 };
