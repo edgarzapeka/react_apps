@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const app = express();
 
-mongoose.connect('mongodb://localhost/todo');
+mongoose.connect('mongodb://localhost/backend_app');
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.on('open', () => {
@@ -13,6 +14,12 @@ const PORT = 3333;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false
+}));
 
 app.use((req, res, next) => {
 
@@ -37,6 +44,7 @@ app.use((req, res, next) => {
 
 app.use('/todo', require('./controllers/TodoController'));
 app.use('/book', require('./controllers/BookController'));
+app.use('/user', require('./controllers/UserController'));
 
 app.get('/', (req, res) => res.send('Hello world!'));
 

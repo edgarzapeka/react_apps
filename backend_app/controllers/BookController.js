@@ -42,9 +42,13 @@ router.post('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
-    console.log(`Received: id: ${req.body.id} | text: ${req.body.text}`);
+    console.log(`Received: id: ${req.body.id} | title: ${req.body.title}`);
     BookModel.updateOne({ _id: ObjectId(req.body.id) }, {
-        text: req.body.text
+        title: req.body.title,
+        description: req.body.description,
+        additionalInfo: req.body.additionalInfo,
+        price: req.body.price,
+        updatedAt: Date.now
     }, (err, updatedObj) => {
         res.setHeader('Content-Type', 'application/json');
         if (err){
