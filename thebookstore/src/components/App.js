@@ -1,9 +1,9 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-
+import React, { Suspense } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
-import BookList from './BookList';
-import Footer from './Footer';
+
+const BookList = React.lazy(() => import('./BookList'));
+const Footer = React.lazy(() => import('./Footer'));
 
 import { Container, Row, Col } from 'reactstrap';
 
@@ -13,11 +13,19 @@ const App = props => {
         <Container>
             <Header />
             <Col md="12">
-                <Route path="/" exact component={BookList} />
-                <Route path="/new" component={() => (<h1>New items page</h1>)} />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Switch>
+                    <Route path="/" exact component={ props =>
+                            <BookList />
+                    } />
+                    <Route path="/new" component={() => (<h1>New items page</h1>)} />
+                </Switch>
+            </Suspense>
             </Col>
             <Col md="12">
-                <Footer />
+                <Suspense fallback={<div>Loading footer...</div>}>
+                    <Footer />
+                </Suspense>
             </Col>
         </Container>
     );

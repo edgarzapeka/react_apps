@@ -1,7 +1,21 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
+    entry: {
+        index: './src/index.js'
+    },
+    output: {
+        // `filename` provides a template for naming your bundles (remember to use `[name]`)
+        filename: '[name].bundle.js',
+        // `chunkFilename` provides a template for naming code-split bundles (optional)
+        chunkFilename: '[name].bundle.js',
+        // `path` is the folder where Webpack will place your bundles
+        path: path.resolve(__dirname, 'dist'),
+        // `publicPath` is where Webpack will load your bundles from (optional)
+        publicPath: path.resolve(__dirname, 'dist'),
+    },
     module: {
         rules: [
             {
@@ -12,7 +26,10 @@ module.exports = {
                     options: {
                         presets: [
                             '@babel/env',
-                            '@babel/react'
+                            '@babel/react',
+                        ],
+                        plugins: [
+                            'syntax-dynamic-import'
                         ]
                     }
                 }
@@ -63,5 +80,10 @@ module.exports = {
             chunkFilename: '[id].css'
         })
     ],
-    devtool: 'inline-source-map'
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 8080
+    }
 };
