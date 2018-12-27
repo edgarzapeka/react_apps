@@ -4,6 +4,7 @@ import Header from './Header';
 
 const BookList = React.lazy(() => import('./BookList'));
 const Footer = React.lazy(() => import('./Footer'));
+import BookInfoView from './book_info/BookInfoView';
 
 import { Container, Row, Col } from 'reactstrap';
 
@@ -16,7 +17,10 @@ const App = props => {
             <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
                     <Route path="/" exact component={ props =>
-                            <BookList />
+                            <Row>
+                                <BookList />
+                                <BookInfoView />
+                            </Row>
                     } />
                     <Route path="/new" component={() => (<h1>New items page</h1>)} />
                 </Switch>

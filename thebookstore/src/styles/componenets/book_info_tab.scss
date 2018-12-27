@@ -1,0 +1,8 @@
+.book_info_tab {
+    padding: 0.5em 2em;
+    border: 2px solid red;
+    max-width: 100%;
+}
+.book_info_tab:nth-child(n+2){
+    margin-left: 1em;
+}
