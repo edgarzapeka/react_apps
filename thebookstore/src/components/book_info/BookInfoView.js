@@ -1,15 +1,17 @@
 import React from 'react';
 import BookInfoTabs from './BookInfoTabs';
+import BookContent from './BookContent';
 
-import { Col } from 'reactstrap';
+import { bookInfoView } from './../../styles/componenets/book_info_view.scss';
 
 const BookInfoView = props => {
     const { book } = props;
 
     return (
-        <Col md="8">
+        <div className={bookInfoView}>
             <BookInfoTabs />
-        </Col>
+            <BookContent />
+        </div>
     )
 }
 

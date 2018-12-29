@@ -1,13 +1,12 @@
 import React from 'react';
 
 import { book_info_tab } from './../../styles/componenets/book_info_tab.scss';
-import { Col } from 'reactstrap';
 
 const BookInfoTab = props => {
     return (
-        <Col md="2" className={book_info_tab}>
+        <div className={book_info_tab}>
             {props.tab}
-        </Col>
+        </div>
     )
 }
 
