@@ -26,7 +26,7 @@ router.get('/:bookId', (req, res) => {
 
 router.post('/', (req, res) => {
     let model = new BookModel({
-        text: req.body.text
+        summary: req.body.summary
     });
 
     model.save((err, model) => {
@@ -42,12 +42,8 @@ router.post('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
-    console.log(`Received: id: ${req.body.id} | title: ${req.body.title}`);
     BookModel.updateOne({ _id: ObjectId(req.body.id) }, {
-        title: req.body.title,
-        description: req.body.description,
-        additionalInfo: req.body.additionalInfo,
-        price: req.body.price,
+        summary: req.body.summary,
         updatedAt: Date.now
     }, (err, updatedObj) => {
         res.setHeader('Content-Type', 'application/json');

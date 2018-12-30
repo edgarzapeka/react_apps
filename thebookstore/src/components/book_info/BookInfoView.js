@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BookInfoTabs from './BookInfoTabs';
-import BookContent from './BookContent';
+import BookReviews from './BookReviews';
+import BookSummary from './BookSummary';
 
 import { bookInfoView } from './../../styles/componenets/book_info_view.scss';
 
@@ -12,7 +13,11 @@ const BookInfoView = props => {
     return (
         <div className={bookInfoView}>
             <BookInfoTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} tabs={tabs} />
-            <BookContent />
+            {selectedTab === 'Summary' ? (
+                <BookSummary />
+            ) : (
+                <BookReviews />
+            )}
         </div>
     )
 }

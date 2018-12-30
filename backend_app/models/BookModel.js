@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 
 const bookModel = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
-    title: String,
-    description: String,
-    author: String,
-    additionalInfo: Object,
-    price: Number,
+    summary: String,
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: null}
 });
