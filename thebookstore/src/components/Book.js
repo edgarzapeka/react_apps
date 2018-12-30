@@ -1,16 +1,24 @@
 import React from 'react';
+import { selectBook } from './../actions';
+import { connect } from 'react-redux';
 
-import { bookItem } from './../styles/componenets/book_list.scss';
+import { bookListItem, bookListItemSelected } from './../styles/componenets/book.scss';
 
 const Book = props => {
-    const { title, description, author, price, createdAt, updatedAt } = props.book;
-    console.log(props.book)
+    const { book, selectedBook, selectBook } = props;
 
     return (
-        <div className={bookItem}>
-            <h3>{title}</h3>
+        <div className={book === selectedBook ? bookListItemSelected : bookListItem} onClick={() => selectBook(book)}>
+            <h3>{book.title}</h3>
         </div>
     );
 };
 
-export default Book;
+const mapStateToProps = state => ({
+    selectedBook: state.books.selectedBook
+});
+const mapDispatchToProps = dispatch => ({
+    selectBook: (book) => dispatch(selectBook(book))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Book);

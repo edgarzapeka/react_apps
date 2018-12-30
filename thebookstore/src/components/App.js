@@ -1,13 +1,23 @@
-import React, { Suspense } from 'react';
-import Header from './Header';
+import React, { Suspense, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+
+import { fetchBooks } from './../actions';
 
 const BookList = React.lazy(() => import('./BookList'));
 const Footer = React.lazy(() => import('./Footer'));
 import BookInfoView from './book_info/BookInfoView';
+import Header from './Header';
 
 import { wrapper, content } from './../styles/componenets/app.scss';
 
 const App = props => {
+    const { books, isBooksFetched, getAllBooks } = props;
+
+    useEffect(() => {
+        if(!isBooksFetched){
+            getAllBooks();
+        }
+    })
 
     return (
         <div className={wrapper}>
@@ -27,4 +37,13 @@ const App = props => {
     );
 };
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+    getAllBooks: () => dispatch(fetchBooks())
+});
+
+const mapStateToProps = state => ({
+    books: state.books.books,
+    isBooksFetched: state.books.isBooksFetched
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

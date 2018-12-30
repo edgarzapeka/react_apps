@@ -1,8 +1,19 @@
 .book_info_tab {
     padding: 0.5em 2em;
-    border: 2px solid red;
+    border: 2px solid purple;
+    color: purple;
+    max-width: 100%;
+}
+.book_info_tab_selected {
+    padding: 0.5em 2em;
+    border: 2px solid black;
+    background-color: purple;
+    color: white;
     max-width: 100%;
 }
 .book_info_tab:nth-child(n+2){
+    margin-left: 1em;
+}
+.book_info_tab_selected:nth-child(n+2){
     margin-left: 1em;
 }
