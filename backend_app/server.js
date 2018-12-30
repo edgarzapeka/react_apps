@@ -45,6 +45,7 @@ app.use((req, res, next) => {
 app.use('/todo', require('./controllers/TodoController'));
 app.use('/book', require('./controllers/BookController'));
 app.use('/user', require('./controllers/UserController'));
+app.use('/review', require('./controllers/ReviewController'));
 
 app.get('/', (req, res) => res.send('Hello world!'));
 
