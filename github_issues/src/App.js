@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
+import Home from './components/Home';
+
+import { app } from './styles/app.module.scss';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Hello world!</h1>
+      <div className={app}>
+        <Home />
       </div>
     );
   }

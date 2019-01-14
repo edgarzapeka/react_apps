@@ -1,0 +1,10 @@
+@import 'common/colors';
+
+.app {
+    margin: 0 auto;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: $accent;
+}

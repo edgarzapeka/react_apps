@@ -1,0 +1,45 @@
+@import 'common/colors';
+
+.home {
+
+    display: flex;
+    flex-direction: column; 
+    width: 40%;
+    align-items: center;
+
+    .title {
+        font-size: 2em;
+        font-weight: bold;
+        color: $white;
+    }
+
+    .form {
+        display: flex;
+        width: 100%;
+        padding: 1em;
+        box-sizing: border-box;
+        background-color: $white;
+        border-radius: 2em;
+    }
+
+    input[type=text] {
+        width: 100%;
+        border: none;
+        font-size: 2.5em;
+        color: $grey;
+    }
+
+    input[type=text]::placeholder {
+        
+        color: $grey;
+    }
+
+    input[type=text]:focus {
+        outline: none;
+    }
+
+    path {
+        fill: $grey;
+    }
+
+}
