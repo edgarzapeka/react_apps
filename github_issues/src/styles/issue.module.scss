@@ -1,0 +1,24 @@
+@import 'common/colors';
+
+.issue_wrapper {
+    display: flex; 
+    flex-direction: column;
+    box-shadow: 0 5px 8px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+}
+
+.issue_title {
+    padding: 2em;
+    background-color: $main;
+    color: $white;
+}
+
+.issue_body {
+    background-color: $white;
+    padding: 1em;
+}
+
+.tags_list {
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+}

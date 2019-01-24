@@ -1,0 +1,12 @@
+@import 'common/colors';
+
+.menu_item {
+    color: $text;
+}
+.menu_item_selected {
+    color: $accent;
+}
+
+.menu_item + .menu_item {
+    margin-left: 15px;
+}

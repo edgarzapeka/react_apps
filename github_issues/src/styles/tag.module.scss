@@ -1,0 +1,21 @@
+@import './common/colors';
+
+.tag_wrapper {
+    background-color: $accent;
+    color: $white;
+    border-radius: 2em;
+    padding: .5em;
+}
+
+.tag_wrapper + .tag_wrapper {
+    margin-left: 15px;
+}
+
+.tag_text::before {
+    color: $white;
+    content: "\2022"; 
+    font-size: 1em;
+    padding-right: .3em;
+    position: relative;
+    top: 0em;
+}
