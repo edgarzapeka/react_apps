@@ -12,11 +12,10 @@ const SearchResults = props => {
     const [ issues, setIssues ] = useState([]);
 
     useEffect(() => {
-        console.log(`Effect ${issues}`)
         getGithubIssues(props.repo)
             .then(response => response.json())
             .then(data => setIssues(data));
-    }, [ ])
+    }, [])
 
     return (
         <div className={styles.search_results}>
@@ -29,7 +28,7 @@ const SearchResults = props => {
                     <CloseIcon className={styles.close_icon} />
                 </Link>
                 <Filters filter={filter} setFilter={setFilter}/>
-                <IssuesList issues={issues}/>
+                <IssuesList filter={filter} issues={issues}/>
             </div>
         </div>
     )

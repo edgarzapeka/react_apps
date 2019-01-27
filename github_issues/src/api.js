@@ -8,7 +8,7 @@ const headers = {
 };
 
 export const getGithubIssues = (repo) => {
-    return fetch(`${githubApiUrl}${repo}`, { headers });
+    return fetch(`${githubApiUrl}${repo}/issues`, { headers });
 }
 
 export const getIssues = () => {

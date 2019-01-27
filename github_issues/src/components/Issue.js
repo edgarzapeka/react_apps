@@ -9,13 +9,18 @@ const Issue = props => {
     const { issue } = props;
     console.log(issue)
 
+    const getStatusIcon = (issue) => {
+        if (issue.pull_request !== undefined) {
+            return (<PullRequestIcon className={styles.issue_icon}/>);
+        } else if (issue.status !== 'open') {
+            return (<IssueClosedIcon className={styles.issue_icon}/>);
+        }
+    }
+
     return (
         <div className={styles.issue_wrapper}>
             <div className={styles.issue_title}>
-                {true ? 
-                    <PullRequestIcon className={styles.issue_icon}/> :
-                    <IssueClosedIcon className={styles.issue_icon}/>
-                }
+                { getStatusIcon(issue) }
                 <span className={styles.issue_title_text}>
                     {issue.title}
                 </span>

@@ -2,7 +2,6 @@ import React from 'react';
 import Issue from './Issue';
 
 import styles from './../styles/issues_list.module.scss';
-import { getIssues } from './../api';
 
 const IssuesList = props => {
     const { issues } = props;

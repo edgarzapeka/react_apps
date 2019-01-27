@@ -2,9 +2,10 @@
 @import 'common/functions';
 
 .issue_wrapper {
-    display: flex; 
-    flex-direction: column;
+    display: grid; 
+    grid-template-rows: 1fr 2fr .5fr;
     box-shadow: 0 5px 8px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+    overflow: hidden;
 }
 
 .issue_title {
@@ -24,10 +25,12 @@
 .issue_body {
     background-color: $white;
     padding: 1em;
-    flex-grow: 1;
+    flex: 1;
     color: $text;
     font-size: em(12);
     font-family: 'Montserrat Regular', 'Roboto', sans-serif;
+    max-height: 200px;
+    overflow: auto;
 }
 
 .issue_icon {
@@ -37,6 +40,10 @@
     margin: 5px 0px 0px 0px;
     height: 15px;
     width: 20px;
+}
+
+.issue_icon > path {
+    fill: black;
 }
 
 .tags_list {
