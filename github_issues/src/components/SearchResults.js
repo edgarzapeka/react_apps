@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './../styles/search_results.module.scss';
 import IssuesList from './IssuesList';
 import Filters, { FILTERS_VALUES } from './Filters';
+import { ReactComponent as CloseIcon } from '../icons/close.svg';
 
 const SearchResults = props => {
     const [ filter, setFilter ] = useState(FILTERS_VALUES[0]);
@@ -14,6 +16,9 @@ const SearchResults = props => {
                 <span className={styles.link}>{'https://github.com/facebook/react'}</span>
             </div>
             <div className={styles.filters_wrapper}>
+                <Link to="/">
+                    <CloseIcon className={styles.close_icon} />
+                </Link>
                 <Filters filter={filter} setFilter={setFilter}/>
                 <IssuesList />
             </div>

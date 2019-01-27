@@ -8,11 +8,17 @@
 }
 
 .issue_title {
-    padding: 2em;
+    display: flex;
+    position: relative;
+    padding: 5px;
     background-color: $main;
     color: $white;
     font-size: em(18);
     font-family: 'Montserrat Regular', 'Roboto', sans-serif;
+}
+
+.issue_title_text {
+    margin: calc(1.5em - 5px);
 }
 
 .issue_body {
@@ -22,6 +28,15 @@
     color: $text;
     font-size: em(12);
     font-family: 'Montserrat Regular', 'Roboto', sans-serif;
+}
+
+.issue_icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin: 5px 0px 0px 0px;
+    height: 15px;
+    width: 20px;
 }
 
 .tags_list {

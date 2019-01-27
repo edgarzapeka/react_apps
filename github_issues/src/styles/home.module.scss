@@ -8,41 +8,46 @@
     width: 40%;
     align-items: center;
     font-family: 'Montserrat Bold';
+}
 
-    .title {
-        font-size: 2em;
-        font-weight: bold;
-        color: $white;
-        font-size: em(46);
-    }
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    color: $white;
+    font-size: em(46);
+}
 
-    .form {
-        display: flex;
-        width: 100%;
-        padding: 1em;
-        box-sizing: border-box;
-        background-color: $white;
-        border-radius: 2em;
-    }
+.form {
+    display: flex;
+    width: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: $white;
+    box-shadow: 0 5px 8px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+}
 
-    input[type=text] {
-        width: 100%;
-        border: none;
-        font-size: em(28);
-        color: $grey;
-    }
+input[type=text] {
+    width: 100%;
+    border: none;
+    font-size: em(28);
+    color: $grey;
+}
 
-    input[type=text]::placeholder {
-        
-        color: $grey;
-    }
+input[type=text]::placeholder {
+    
+    color: $grey;
+}
 
-    input[type=text]:focus {
-        outline: none;
-    }
+input[type=text]:focus {
+    outline: none;
+}
 
-    path {
-        fill: $grey;
-    }
+path {
+    fill: $grey;
+}
 
+.search_icon {
+    height: 30px;
+    width: 30px;
+    margin: 0px 20px 0px 0px;
 }

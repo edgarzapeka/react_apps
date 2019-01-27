@@ -11,6 +11,7 @@
 
 .filters_wrapper {
     display: flex;
+    position: relative;
     flex-direction: column;
     padding: 4rem;
     background-color: $white;
@@ -36,3 +37,11 @@
     font-size: 1.2em;
     color: $text;
 } 
+
+.close_icon {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
