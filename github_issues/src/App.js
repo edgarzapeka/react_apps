@@ -14,7 +14,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/search" component={(match) => (
-           <SearchResults repo={QueryString.parse(match.location.search).repo} />
+          <SearchResults repo={QueryString.parse(match.location.search).repo} />
           )} />
         </Switch>
       </div>

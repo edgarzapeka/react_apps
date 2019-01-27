@@ -21,7 +21,7 @@ const SearchResults = props => {
         <div className={styles.search_results}>
             <div className={styles.header}>
                 <span className={styles.title}>Github Issue Viewer</span>
-                <span className={styles.link}>{'https://github.com/facebook/react'}</span>
+                <span className={styles.link}>{`https://github.com${props.repo}`}</span>
             </div>
             <div className={styles.filters_wrapper}>
                 <Link to="/">

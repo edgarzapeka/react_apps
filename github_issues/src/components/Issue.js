@@ -7,7 +7,6 @@ import { ReactComponent as PullRequestIcon } from '../icons/pull-request.svg';
 
 const Issue = props => {
     const { issue } = props;
-    console.log(issue)
 
     const getStatusIcon = (issue) => {
         if (issue.pull_request !== undefined) {
