@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getGithubIssues } from '../api';
 
 import styles from './../styles/search_results.module.scss';
 import IssuesList from './IssuesList';
@@ -8,6 +9,14 @@ import { ReactComponent as CloseIcon } from '../icons/close.svg';
 
 const SearchResults = props => {
     const [ filter, setFilter ] = useState(FILTERS_VALUES[0]);
+    const [ issues, setIssues ] = useState([]);
+
+    useEffect(() => {
+        console.log(`Effect ${issues}`)
+        getGithubIssues(props.repo)
+            .then(response => response.json())
+            .then(data => setIssues(data));
+    }, [ ])
 
     return (
         <div className={styles.search_results}>
@@ -20,7 +29,7 @@ const SearchResults = props => {
                     <CloseIcon className={styles.close_icon} />
                 </Link>
                 <Filters filter={filter} setFilter={setFilter}/>
-                <IssuesList />
+                <IssuesList issues={issues}/>
             </div>
         </div>
     )

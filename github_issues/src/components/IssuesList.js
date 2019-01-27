@@ -5,7 +5,7 @@ import styles from './../styles/issues_list.module.scss';
 import { getIssues } from './../api';
 
 const IssuesList = props => {
-    const issues = getIssues();
+    const { issues } = props;
 
     return (
         <div className={styles.issues_list}>

@@ -7,6 +7,7 @@ import { ReactComponent as PullRequestIcon } from '../icons/pull-request.svg';
 
 const Issue = props => {
     const { issue } = props;
+    console.log(issue)
 
     return (
         <div className={styles.issue_wrapper}>
@@ -21,7 +22,7 @@ const Issue = props => {
             </div>
             <span className={styles.issue_body}>{issue.body ? issue.body : 'No description provided'}</span>
             <div className={styles.tags_list}>
-                { issue.tags.map(t => <Tag key={t} tag={t} />) }
+                { issue.labels.map(t => <Tag key={t.id} tag={t.name} />) }
             </div>
         </div>
     );

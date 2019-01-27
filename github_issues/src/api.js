@@ -1,3 +1,16 @@
+import { github_access_token } from './token';
+
+const githubApiUrl = 'https://api.github.com/repos';
+const headers = {
+    'Accept': 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json',
+    'Authorization': `token ${github_access_token}`
+};
+
+export const getGithubIssues = (repo) => {
+    return fetch(`${githubApiUrl}${repo}`, { headers });
+}
+
 export const getIssues = () => {
     return [
         {
