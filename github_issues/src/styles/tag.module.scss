@@ -1,14 +1,17 @@
-@import './common/colors';
+@import 'common/colors';
+@import 'common/functions';
 
 .tag_wrapper {
     background-color: $accent;
     color: $white;
-    border-radius: 2em;
+    border-radius: 5px;
     padding: .5em;
+    font-size: em(9);
+    font-family: 'Montserrat Light', 'Roboto', sans-serif;
 }
 
 .tag_wrapper + .tag_wrapper {
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 .tag_text::before {

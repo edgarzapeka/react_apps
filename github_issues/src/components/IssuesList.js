@@ -1,5 +1,4 @@
 import React from 'react';
-import Filters from './Filters';
 import Issue from './Issue';
 
 import styles from './../styles/issues_list.module.scss';

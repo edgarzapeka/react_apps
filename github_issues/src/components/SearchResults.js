@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './../styles/search_results.module.scss';
 import IssuesList from './IssuesList';
-import Filters from './Filters';
+import Filters, { FILTERS_VALUES } from './Filters';
 
 const SearchResults = props => {
+    const [ filter, setFilter ] = useState(FILTERS_VALUES[0]);
 
     return (
         <div className={styles.search_results}>
@@ -13,7 +14,7 @@ const SearchResults = props => {
                 <span className={styles.link}>{'https://github.com/facebook/react'}</span>
             </div>
             <div className={styles.filters_wrapper}>
-                <Filters />
+                <Filters filter={filter} setFilter={setFilter}/>
                 <IssuesList />
             </div>
         </div>

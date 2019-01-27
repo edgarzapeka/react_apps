@@ -4,10 +4,28 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "Montserrat Bold";
+    src: url('../fonts/montserrat-bold.woff2'),
+         url('../fonts/montserrat-bold.woff');
+}
+
+@font-face {
+    font-family: "Montserrat Regular";
+    src: url('../fonts/montserrat-regular.woff2'),
+         url('../fonts/montserrat-regular.woff');
+}
+
+@font-face {
+    font-family: "Montserrat Light";
+    src: url('../fonts/montserrat-light.woff2'),
+         url('../fonts/montserrat-light.woff');
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat Regular', 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
