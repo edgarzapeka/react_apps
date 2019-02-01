@@ -1,4 +1,8 @@
-#Github Issues Explorer
+# Github Issues Explorer
+
+explore issues under a specific github repository 
+
+e.g. type -> https://github.com/nodejs/node
 
 ## How to run
 
