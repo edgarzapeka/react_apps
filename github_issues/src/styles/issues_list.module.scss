@@ -1,8 +1,18 @@
 @import 'common/colors';
+@import 'common/functions';
 
 .issues_list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     padding-top: 2em;
+}
+
+.issues_not_found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2; 
+    color: $text;
+    font-size: em(42);
 }

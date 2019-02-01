@@ -4,8 +4,10 @@
 .tag_wrapper {
     background-color: $accent;
     color: $white;
+    display: flex;
+    align-items: center;
     border-radius: 5px;
-    padding: .5em;
+    padding: .3em;
     font-size: em(9);
     font-family: 'Montserrat Light', 'Roboto', sans-serif;
 }

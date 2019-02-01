@@ -20,7 +20,7 @@ const SearchResults = props => {
     return (
         <div className={styles.search_results}>
             <div className={styles.header}>
-                <span className={styles.title}>Github Issue Viewer</span>
+                <Link to="/"><span className={styles.title}>Github Issue Viewer</span></Link>
                 <span className={styles.link}>{`https://github.com${props.repo}`}</span>
             </div>
             <div className={styles.filters_wrapper}>

@@ -21,6 +21,14 @@ const IssuesList = props => {
             filteredIssues = issues;
     }
 
+    if (filteredIssues.length === 0) {
+        return (
+            <div className={styles.issues_not_found}>
+                No issues found
+            </div>
+        )
+    }
+
     return (
         <div className={styles.issues_list}>
             { filteredIssues.map(i => <Issue issue={i} key={i.id} />) }
